@@ -1,23 +1,30 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-} from "../components/ui/card";
+import { Card, CardContent, CardHeader } from "../components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus, Clock } from "lucide-react";
+import { Clock } from "lucide-react";
 import Customer from "@/types/Customer";
 import ApiResponse from "@/types/Response";
+import { DialogDemo } from "@/components/addIAAForm";
+import { Link } from "react-router-dom";
 
-function Iaa(){
-  const url = "http://13.233.16.129:3000/api/v1/get/customers";
+
+
+
+function Iaa() {
   const [customers, setCustomers] = useState<Customer[]>([]);
-
+  const token = JSON.parse(localStorage.getItem("accessToken") || "");
   const fetchInfo = async () => {
     try {
-      const response = await axios.get<ApiResponse>(url);
-      setCustomers(response.data.data.customers);
+      const iaaresponse = await axios.get<ApiResponse>(
+        "http://13.233.16.129:3000/api/v1/get/customers",
+        {
+          headers: {
+            Authorization: `Barear ${token}`,
+          },
+        }
+      );
+      setCustomers(iaaresponse.data.data.customers);
     } catch (error) {
       console.error("Error fetching customers:", error);
     }
@@ -48,9 +55,13 @@ function Iaa(){
                   <p>Invoice pending</p>
                   <p>{customer.totalIAAs}</p>
                 </div>
-                <Button className="bg-white hover:bg-blue-800 text-black hover:text-white mt-12">
+                
+  {/* <Button className="bg-white hover:bg-blue-800 text-black hover:text-white mt-12">
                   <Plus className="h-full w-full" />
-                </Button>
+                </Button> */}
+ <DialogDemo />
+
+                
                 <Button className="bg-white hover:bg-blue-800 text-black hover:text-white mt-12">
                   <Clock className="h-full w-full" />
                 </Button>
@@ -59,6 +70,12 @@ function Iaa(){
           ))}
         </div>
       </div>
+      <div className="flex justify-end mt-16 mb-2">
+        <Link to='hall'>
+        <Button type="submit" className="bg-purple-800 hover:bg-purple-500">Next</Button>
+        </Link>
+        
+      </div>  
     </div>
   );
 }

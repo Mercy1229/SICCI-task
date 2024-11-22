@@ -1,33 +1,38 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-} from "../components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "../components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Clock } from "lucide-react";
-import HallData from '../types/hallData'
+import HallData from "../types/hallData";
 import HallResponse from "@/types/HallResponse";
+import { AddHallForm } from "@/components/addHallbookingForm";
+import { Link } from "react-router-dom";
 
-function Hallplan(){
+function Hallplan() {
   const [hall, setHall] = useState<HallData[]>([]);
+  const token = JSON.parse(localStorage.getItem("accessToken") || "");
   const fetchInfo = async () => {
     try {
-      const response = await axios.get<HallResponse>('http://13.233.16.129:3000/api/v1/get/hall-rooms');
-      setHall(response.data.data.hallRoom);
-      console.log(hall)
+      const hallPlanResponse = await axios.get<HallResponse>(
+        "http://13.233.16.129:3000/api/v1/get/hall-rooms",
+        {
+          headers: {
+            Authorization: `Barear ${token}`,
+          },
+        }
+      );
+      setHall(hallPlanResponse.data.data.hallRoom);
+      console.log(hall);
     } catch (error) {
       console.error("Error fetching hall:", error);
     }
   };
-
   useEffect(() => {
     fetchInfo();
   }, []);
-
   return (
-    <div className="border shadow-md w-full m-5 p-5">
+    <>
+    <div className="border shadow-md w-full m-5 p-5 min-h-screen">
       <h1 className="text-xl font-bold text-purplecolor">Hall Booking</h1>
       <div className="px-20 mt-5">
         <div className="w-full grid grid-cols-2 gap-5">
@@ -47,9 +52,7 @@ function Hallplan(){
                   <p>{hall.paymentReceivedBookings}</p>
                   <p>payment Received</p>
                 </div>
-                <Button className="bg-white hover:bg-blue-800 text-black hover:text-white mt-12">
-                  <Plus className="h-full w-full" />
-                </Button>
+                <AddHallForm />
                 <Button className="bg-white hover:bg-blue-800 text-black hover:text-white mt-12">
                   <Clock className="h-full w-full" />
                 </Button>
@@ -58,8 +61,17 @@ function Hallplan(){
           ))}
         </div>
       </div>
+      
     </div>
+    <div className='flex flex-row justify-between ms-5  w-full'> 
+    <Link to="/iaa">
+      <Button className='bg-purple-800 text-white hover:bg-purple-600'>Go Back</Button>
+    </Link>
+    <Link to="user">
+      <Button className=' bg-purple-800'>Next Step</Button>
+    </Link>
+  </div>
+  </>
   );
 }
-
 export default Hallplan;

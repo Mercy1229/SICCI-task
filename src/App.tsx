@@ -11,6 +11,7 @@ import ArbitratorTable from "./pages/Arbitrator";
 import CustomerTable from "./pages/CustomerTable";
 import HallTable from "./pages/HallTable";
 import IaaReportTable from "./pages/IaaTransactions";
+import HallBookingReport from "./pages/HallBookingreport";
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
             <Route path="arbitrator" element={<ArbitratorTable />} />
             <Route path="customers" element={<CustomerTable />} />
             <Route path="hallTable" element={<HallTable/>} />
-            <Route path="IaaReports" element={<IaaReportTable/>} />
+            <Route path="iaa-reports" element={<IaaReportTable/>} />
+            <Route path="hall-booking-report" element={<HallBookingReport/>} />
           </Route>
       </Routes>
     </Router>

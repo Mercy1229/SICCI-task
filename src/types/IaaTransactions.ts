@@ -7,7 +7,7 @@ export default interface IaaTransactions{
     _id: string,
     customer: Customer,
     batchNumber: string,
-    loanType: LoanType[],
+    loanType: LoanType,
     date: string,
     file: any,
     remarks: string,
@@ -18,7 +18,7 @@ export default interface IaaTransactions{
     createdAt: string,
     updatedAt: string,
     __v: number,
-    generatedInvoice: string,
+    generatedInvoice?: string,
     generatedInvoiceDate: string,
     generatedInvoiceNumber: string,
 }
