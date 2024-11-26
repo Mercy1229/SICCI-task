@@ -15,7 +15,6 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Outlet, useLocation } from "react-router-dom";
-import React from "react";
 import NavLinks from "./NavLink";
 import { ModeToggle } from "@/components/mode-toggle";
 
@@ -78,10 +77,9 @@ export default function Home() {
                   .join("/")}`;
                 return (
                   <div key={breadcrumbPath} className="flex flex-row space-x-3">
-                    {index > 0 && <BreadcrumbSeparator className="my-auto">/
-                    </BreadcrumbSeparator>}
+                    {index > 0 && 
+                    <BreadcrumbSeparator className="my-auto">/</BreadcrumbSeparator>}
                     <BreadcrumbItem>
-                    
                       <BreadcrumbLink href={breadcrumbPath}>
                         {pathLabels[segment] || segment.charAt(0).toUpperCase() + segment.slice(1)}
                       </BreadcrumbLink>

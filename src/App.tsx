@@ -12,33 +12,36 @@ import CustomerTable from "./pages/CustomerTable";
 import HallTable from "./pages/HallTable";
 import IaaReportTable from "./pages/IaaTransactions";
 import HallBookingReport from "./pages/HallBookingreport";
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/theme-provider";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Home />}>
-          <Route index element={<Iaa />} />
-          <Route path="iaa" element={<Iaa />} />
-          <Route path="hall" element={<Hallplan />} />
-        </Route>
-        <Route path="/master-table" element={<Home />}>
-          <Route path="users" element={<Users />} />
-          <Route path="roles" element={<Roles />} />
-          <Route path="loan-types" element={<LoanTypes />} />
-          <Route path="arbitrator" element={<ArbitratorTable />} />
-          <Route path="customers" element={<CustomerTable />} />
-          <Route path="hall-table" element={<HallTable />} />
-        </Route>
-        <Route path="/reports" element={<Home />}>
-          <Route path="iaa-reports" element={<IaaReportTable />} />
-          <Route path="hall-booking-reports" element={<HallBookingReport />} />
-        </Route>
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/dashboard" element={<Home />}>
+            <Route index element={<Iaa />} />
+            <Route path="iaa" element={<Iaa />} />
+            <Route path="hall" element={<Hallplan />} />
+          </Route>
+          <Route path="/master-table" element={<Home />}>
+            <Route path="users" element={<Users />} />
+            <Route path="roles" element={<Roles />} />
+            <Route path="loan-types" element={<LoanTypes />} />
+            <Route path="arbitrator" element={<ArbitratorTable />} />
+            <Route path="customers" element={<CustomerTable />} />
+            <Route path="hall-table" element={<HallTable />} />
+          </Route>
+          <Route path="/reports" element={<Home />}>
+            <Route path="iaa-reports" element={<IaaReportTable />} />
+            <Route
+              path="hall-booking-reports"
+              element={<HallBookingReport />}
+            />
+          </Route>
+        </Routes>
+      </Router>
     </ThemeProvider>
   );
 }
