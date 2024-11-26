@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  
   Table,
   TableBody,
   TableCaption,
@@ -14,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import HallResponse from "@/types/HallResponse";
 import HallData from "@/types/hallData";
 import { AddHallForm } from "@/components/addHallForm";
+import TablePagination from "@/components/tablepagination";
 
 export default function HallTable() {
   const [customer, setCustomer] = useState<HallData[]>([]);
@@ -79,6 +81,7 @@ export default function HallTable() {
           );
         })}
       </Table>
+      <TablePagination />
     </div>
   );
 }

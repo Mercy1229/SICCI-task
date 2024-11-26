@@ -21,9 +21,12 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import IaaTransactions from "@/types/IaaTransactions";
 import IaaTransactionsResponse from "@/types/IaatransactionsResponse";
+import Customer from "@/types/Customer";
+import customerResponse from "@/types/CustomerResponse";
 
 export default function IaaReportTable() {
   const [transactions, setTransactions] = useState<IaaTransactions[]>([]);
+  const [customer,setCustomer]=useState<Customer[]>([]);
   const token = JSON.parse(localStorage.getItem("accessToken") || "");
   const fetchInfo = async () => {
     try {
@@ -45,6 +48,26 @@ export default function IaaReportTable() {
   useEffect(() => {
     fetchInfo();
   }, []);
+  const fetchcustomerInfo = async () => {
+    try {
+      const customerresponse = await axios.get<customerResponse>(
+        "http://13.233.16.129:3000/api/v1/get/customers",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(customerresponse.data);
+      setCustomer(customerresponse.data.data.customers);
+    } catch (error) {
+      console.error("Error fetching hall:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchcustomerInfo();
+  }, []);
   return (
     <div className="border shadow-md w-full m-5 p-5">
       <div className="flex flex-row justify-between">
@@ -52,15 +75,14 @@ export default function IaaReportTable() {
         <div className="flex flex-row space-x-4">
         <Select>
   <SelectTrigger className="w-[180px]">
-    <SelectValue placeholder="select Customer" />
+    <SelectValue placeholder="Select Customer" />
   </SelectTrigger>
   <SelectContent>
-    <SelectItem value="Cholamandalam-VF">Cholamandalam-VF</SelectItem>
-    <SelectItem value="Cholamandalam-HL">Cholamandalam-HL</SelectItem>
-    <SelectItem value="Cholamandalam-SBPL">Cholamandalam-SBPL</SelectItem>
-    <SelectItem value="Cholamandalam-LAP">Cholamandalam-LAP</SelectItem>
-    <SelectItem value="GrowXcd">GrowXcd</SelectItem>
-    <SelectItem value="Zanwarwala">Zanwarwala</SelectItem>
+    {customer.map((data)=>{
+      return(
+<SelectItem value={data.customerName}>{data.customerName}</SelectItem>
+      )
+    })}
   </SelectContent>
 </Select>
 

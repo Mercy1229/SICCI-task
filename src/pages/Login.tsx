@@ -53,7 +53,7 @@ export default function Login() {
       if (res.status === 200) {
         const accessToken = res.data.data.accessToken;
         setToken(accessToken); 
-        navigate("/home"); 
+        navigate("/dashboard"); 
       } else {
         toast.error("Login failed!");
       }

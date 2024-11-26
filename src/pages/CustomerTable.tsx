@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import Customer from "@/types/Customer";
 import customerResponse from "@/types/CustomerResponse";
 import { AddCustomerForm } from "@/components/addCustomerForm";
+import TablePagination from "@/components/tablepagination";
 
 export default function CustomerTable() {
   const [customer, setCustomer] = useState<Customer[]>([]);
@@ -58,9 +59,9 @@ export default function CustomerTable() {
             <TableBody>
               <TableRow>
                 <TableCell className="">{data.customerName}</TableCell>
-                <TableCell>
+                <TableCell className="flex flex-row space-x-1">
                   {data.loanType.map((d) => {
-                    return <p>{d.loanTypeName}</p>;
+                    return <p>{d.loanTypeName} </p>;
                   })}
                 </TableCell>
                 <TableCell>{data.mobileNumber}</TableCell>
@@ -77,6 +78,7 @@ export default function CustomerTable() {
           );
         })}
       </Table>
+      <TablePagination />
     </div>
   );
 }

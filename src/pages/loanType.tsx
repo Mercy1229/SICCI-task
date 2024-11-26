@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import LoanType from "../types/Loantype";
 import loanResponse from "../types/loanResponse";
 import { AddloanTypeForm } from "@/components/addLoantypeForm";
+import TablePagination from "@/components/tablepagination";
 
 export default function LoanTypes() {
   const [Loandata, setLoandata] = useState<LoanType[]>([]);
@@ -78,6 +79,7 @@ export default function LoanTypes() {
           );
         })}
       </Table>
+      <TablePagination />
     </div>
   );
 }

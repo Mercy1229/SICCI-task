@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import Arbitrator from "@/types/Arbitrator";
 import arbitratorResponse from "@/types/arbitratorResponse";
 import { AddArbitratorForm } from "@/components/addArbitratorForm";
+import TablePagination from "@/components/tablepagination";
 
 export default function ArbitratorTable() {
   const [arbitrator, setArbitrator] = useState<Arbitrator[]>([]);
@@ -77,6 +78,7 @@ export default function ArbitratorTable() {
           );
         })}
       </Table>
+      <TablePagination />
     </div>
   );
 }

@@ -8,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import TablePagination from "@/components/tablepagination";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
@@ -76,6 +77,7 @@ export default function Roles() {
           );
         })}
       </Table>
+      <TablePagination />
     </div>
   );
 }

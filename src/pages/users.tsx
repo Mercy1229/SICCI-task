@@ -8,12 +8,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import user from "../types/user";
 import userResponse from "../types/userResponse";
 import { AddUserForm } from "@/components/addUserForm";
+import TablePagination from "@/components/tablepagination";
 
 export default function Users() {
   const [userdata, setUserdata] = useState<user[]>([]);
@@ -74,6 +76,8 @@ export default function Users() {
           );
         })}
       </Table>
+    <TablePagination />
+
     </div>
   );
 }

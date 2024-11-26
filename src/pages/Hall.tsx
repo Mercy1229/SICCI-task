@@ -1,12 +1,21 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardFooter, CardHeader } from "../components/ui/card";
+import { Card, CardContent, CardHeader } from "../components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus, Clock } from "lucide-react";
+import { Clock } from "lucide-react";
 import HallData from "../types/hallData";
 import HallResponse from "@/types/HallResponse";
 import { AddHallForm } from "@/components/addHallbookingForm";
 import { Link } from "react-router-dom";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
 
 function Hallplan() {
   const [hall, setHall] = useState<HallData[]>([]);
@@ -64,12 +73,20 @@ function Hallplan() {
       
     </div>
     <div className='flex flex-row justify-between ms-5  w-full'> 
-    <Link to="/iaa">
-      <Button className='bg-purple-800 text-white hover:bg-purple-600'>Go Back</Button>
-    </Link>
-    <Link to="user">
-      <Button className=' bg-purple-800'>Next Step</Button>
-    </Link>
+    <Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <Link to="/dashboard/iaa">
+       <PaginationPrevious />
+      </Link>
+    </PaginationItem>
+    <PaginationItem>
+    <Link to="/master-table/users">
+       <PaginationNext />
+      </Link>
+   </PaginationItem>
+  </PaginationContent>
+</Pagination>
   </div>
   </>
   );

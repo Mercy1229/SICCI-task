@@ -7,6 +7,15 @@ import Customer from "@/types/Customer";
 import ApiResponse from "@/types/Response";
 import { DialogDemo } from "@/components/addIAAForm";
 import { Link } from "react-router-dom";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
 
 
 
@@ -71,9 +80,29 @@ function Iaa() {
         </div>
       </div>
       <div className="flex justify-end mt-16 mb-2">
-        <Link to='hall'>
-        <Button type="submit" className="bg-purple-800 hover:bg-purple-500">Next</Button>
-        </Link>
+      <Pagination>
+  <PaginationContent>
+    {/* <PaginationItem>  
+      <PaginationPrevious aria-disabled/>
+    </PaginationItem> */}
+
+    {/* <PaginationItem>
+      <Link to='user'>
+      <PaginationLink>1</PaginationLink>
+      </Link>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationEllipsis />
+    </PaginationItem> */}
+    <PaginationItem>
+      <Link to='/dashboard/hall'>
+      <PaginationNext />
+      </Link>
+      
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>
+
         
       </div>  
     </div>

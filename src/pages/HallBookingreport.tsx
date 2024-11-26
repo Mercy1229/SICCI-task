@@ -20,7 +20,7 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import hallBooking from "@/types/hallBooking";
 import hallBookingResponse from "@/types/hallBookingResponse";
-import { DatePickerDemo } from "./datePicker";
+import { DatePickerDemo } from "../components/datePicker";
 
 export default function HallBookingReport() {
   const [hallbooking, setHallbooking] = useState<hallBooking[]>([]);
